@@ -1,30 +1,29 @@
-class Book {
-    title
-    authour
-    type 
-    snippet
-    imageCover
-    publishedYear
-    publisher 
-    isbn
+const mongoose = require('mongoose')
 
-    constructor({ title,
-        authour,
-        type ,
-        snippet,
-        imageCover,
-        publishedYear,
-        publisher, 
-        isbn}){
+const Schema = mongoose.Schema;
 
-            this. title  = title
-            this.authour  = authour
-            this.type   = type 
-            this.snippet  = snippet
-            this.imageCover  = imageCover
-            this.publishedYear  = publishedYear
-           this.publisher   =  publisher 
-            this.isbn  = isbn
-        }
-}
+const BookSchema = new Schema({
+    author: {
+        type: String,
+        required: true
+    },
+    snippet:{
+        type: String
+    },
+    imageCover:{
+        type: String
+    },
+    publishedYear: Number,
+    publisher: {
+        type: String
+    },
+    isbn: {
+        type: String
+    },
+    date: { type: Date, default: Date.now },
+  });
+
+  const Book = mongoose.model('books', BookSchema);
+
+
 module.exports =  Book
